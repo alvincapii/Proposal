@@ -1,0 +1,140 @@
+/* ============================================
+   MAIN.CSS — Shared base styles & variables
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&family=Sacramento&display=swap');
+
+:root {
+    /* Colors */
+    --bg-dark:        #07060a;
+    --bg-mid:         #110d18;
+    --accent-rose:    #e8a0b0;
+    --accent-blush:   #f5cdd6;
+    --accent-gold:    #c9a96e;
+    --glass-bg:       rgba(255, 255, 255, 0.04);
+    --glass-border:   rgba(255, 255, 255, 0.08);
+    --text-main:      #f0eaf2;
+    --text-dim:       #8a7a90;
+    --text-faint:     #4a3d52;
+
+    /* Typography */
+    --font-serif:     'Cormorant Garamond', serif;
+    --font-sans:      'Jost', sans-serif;
+    --font-script:    'Sacramento', cursive;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Particle Canvas ---- */
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+/* ---- Page Transition Overlay ---- */
+.page-transition-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-dark);
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.page-transition-overlay.fade-out {
+    opacity: 1;
+}
+
+/* ---- Shared Utility Classes ---- */
+.hidden { display: none !important; }
+
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ---- Section Title ---- */
+.section-title {
+    font-family: var(--font-serif);
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 70px;
+    color: var(--accent-blush);
+    letter-spacing: 0.02em;
+}
+
+/* ---- Glow Button (shared) ---- */
+.glow-button {
+    padding: 13px 35px;
+    background: transparent;
+    border: 1px solid var(--accent-rose);
+    color: var(--accent-rose);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.glow-button:hover {
+    background: var(--accent-rose);
+    color: var(--bg-dark);
+    box-shadow: 0 0 25px rgba(232, 160, 176, 0.4);
+}
+
+/* ---- Keyframe Animations ---- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes gentlePulse {
+    0%, 100% { opacity: 0.7; }
+    50%       { opacity: 1; }
+}
+
+/* ---- Mobile Base ---- */
+@media (max-width: 768px) {
+    body { font-size: 0.95rem; }
+}

@@ -1,0 +1,360 @@
+/* ============================================
+   PROPOSAL.CSS — Final "Will you marry me?" page
+   ============================================ */
+
+body {
+    background: radial-gradient(ellipse at 50% 50%, #1f0a2a 0%, #07060a 65%);
+    overflow: hidden; /* full-screen cinematic */
+}
+
+/* ---- Main Stage ---- */
+.proposal-stage {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 40px 20px;
+    gap: 0;
+}
+
+/* ---- Ring Visual ---- */
+.ring-wrapper {
+    margin-bottom: 50px;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease forwards 0.3s;
+}
+
+.ring-svg {
+    width: 90px;
+    height: 90px;
+    filter: drop-shadow(0 0 20px rgba(232, 160, 176, 0.4));
+    animation: ringGlow 3s ease-in-out infinite;
+}
+
+@keyframes ringGlow {
+    0%, 100% { filter: drop-shadow(0 0 15px rgba(232, 160, 176, 0.3)); }
+    50%       { filter: drop-shadow(0 0 30px rgba(232, 160, 176, 0.7)); }
+}
+
+/* ---- Buildup Text ---- */
+.buildup-lines {
+    margin-bottom: 45px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.buildup-line {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--text-dim);
+    opacity: 0;
+}
+
+.buildup-line:nth-child(1) { animation: fadeInUp 1s ease forwards 1.0s; }
+.buildup-line:nth-child(2) { animation: fadeInUp 1s ease forwards 3.0s; }
+.buildup-line:nth-child(3) { animation: fadeInUp 1s ease forwards 5.0s; }
+
+/* ---- Choose line ---- */
+.choose-line {
+    font-family: var(--font-serif);
+    font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+    font-weight: 300;
+    color: var(--accent-blush);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease forwards 8.0s;
+    letter-spacing: 0.02em;
+}
+
+/* ---- The Big Question ---- */
+.proposal-question {
+    font-family: var(--font-script);
+    font-size: clamp(3.2rem, 10vw, 6.5rem);
+    color: var(--accent-rose);
+    line-height: 1.1;
+    text-shadow:
+        0 0 40px rgba(232, 160, 176, 0.5),
+        0 0 80px rgba(232, 160, 176, 0.2);
+    opacity: 0;
+    animation: proposalReveal 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards 11.0s;
+    margin-bottom: 55px;
+}
+
+@keyframes proposalReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+        letter-spacing: -0.1em;
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.05) translateY(-4px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        letter-spacing: 0;
+    }
+}
+
+/* ---- Yes Button ---- */
+.yes-button {
+    padding: 18px 55px;
+    font-size: 1rem;
+    background: var(--accent-rose);
+    color: var(--bg-dark);
+    border: none;
+    border-radius: 50px;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    box-shadow: 0 0 40px rgba(232, 160, 176, 0.35), 0 8px 20px rgba(0,0,0,0.3);
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards 13.0s;
+    position: relative;
+    overflow: hidden;
+}
+
+.yes-button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 50px;
+}
+
+.yes-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 60px rgba(232, 160, 176, 0.55), 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.yes-button:hover::after { opacity: 1; }
+
+.yes-button:active { transform: scale(0.97); }
+
+/* ---- After YES: celebration state ---- */
+.proposal-stage.celebrated .proposal-question {
+    animation: none;
+    transition: color 1s ease, text-shadow 1s ease;
+}
+
+.celebration-message {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 100;
+    background: radial-gradient(ellipse at center, rgba(31, 10, 42, 0.95) 0%, rgba(7,6,10,0.97) 70%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.2s ease;
+    padding: 20px;
+    gap: 20px;
+}
+
+.celebration-message.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.celebration-message .cel-script {
+    font-family: var(--font-script);
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    color: var(--accent-blush);
+    line-height: 1.2;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.celebration-message .cel-body {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--text-dim);
+    max-width: 500px;
+    line-height: 1.8;
+    animation: fadeIn 1s ease forwards 0.5s;
+    opacity: 0;
+}
+
+/* ---- Heart Burst Particles ---- */
+.heart-particle {
+    position: fixed;
+    pointer-events: none;
+    font-size: 1.2rem;
+    animation: heartFly var(--duration, 3s) ease forwards;
+    z-index: 200;
+    opacity: 0;
+}
+
+@keyframes heartFly {
+    0%   { transform: translate(0, 0) scale(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 1; }
+    80%  { opacity: 0.8; }
+    100% {
+        transform: translate(var(--tx, 100px), var(--ty, -200px)) scale(1) rotate(var(--rot, 30deg));
+        opacity: 0;
+    }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 480px) {
+    body { overflow-y: auto; }
+    .proposal-stage { min-height: 100svh; padding: 60px 20px 80px; }
+}
+
+/* ===============================
+   QR POPUP
+   =============================== */
+
+.qr-popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+}
+
+.qr-popup.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.qr-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(15px);
+    padding: 35px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 320px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    animation: fadeInUp 0.6s ease;
+}
+
+.qr-card h2 {
+    font-family: var(--font-script);
+    color: var(--accent-blush);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.qr-card p {
+    font-family: var(--font-serif);
+    color: var(--text-dim);
+    margin-bottom: 20px;
+}
+
+.qr-image {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.qr-close {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    background: var(--accent-rose);
+    color: var(--bg-dark);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition: transform 0.2s ease;
+}
+
+.qr-close:hover {
+    transform: scale(1.05);
+}
+
+/* ===============================
+   SECOND LETTER POPUP
+   =============================== */
+
+.letter-popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    padding: 20px;
+}
+
+.letter-popup.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.letter-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 24px;
+    max-width: 650px;
+    width: 100%;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.6);
+    animation: fadeInUp 0.6s ease;
+    position: relative;
+}
+
+.letter-title {
+    font-family: var(--font-script);
+    font-size: 2.5rem;
+    color: var(--accent-blush);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.letter-text {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: var(--text-main);
+    white-space: pre-wrap;
+    text-align: justify;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.letter-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.letter-close:hover {
+    color: var(--accent-rose);
+}
