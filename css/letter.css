@@ -224,6 +224,7 @@
 }
 
 /* ---- Open When Cards ---- */
+
 .secret-notes {
     position: relative;
     z-index: 1;
@@ -238,8 +239,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: stretch;
     gap: 24px;
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -248,18 +250,23 @@
     border: 1px dashed rgba(232, 160, 176, 0.3);
     padding: 35px 30px;
     border-radius: 16px;
+
     text-align: center;
     cursor: pointer;
-    transition: background 0.3s, border-color 0.3s, transform 0.3s;
     text-decoration: none;
     color: inherit;
-    min-width: 200px;
-    flex: 1;
-    max-width: 260px;
+
+    width: 260px;
+    height: 220px;
+
+    flex: none;
+
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
+
+    box-sizing: border-box;
 }
 
 .open-when-card:hover {
@@ -295,6 +302,24 @@
 
 .open-when-card:hover .card-arrow {
     color: var(--accent-rose);
+}
+
+
+/* ---- Mobile ---- */
+
+@media (max-width: 768px) {
+
+    .note-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .open-when-card {
+        width: 260px;
+        height: 220px;
+        flex: 0 0 260px;
+    }
+
 }
 
 /* ---- Continue Button ---- */
@@ -361,19 +386,3 @@
     color: var(--text-dim);
 }
 
-/* ---- Mobile ---- */
-@media (max-width: 768px) {
-    .timeline::before { left: 18px; }
-
-    .timeline-item,
-    .timeline-item:nth-child(even) {
-        justify-content: flex-start;
-        padding-left: 44px;
-        padding-right: 0;
-    }
-
-    .timeline-dot { left: 18px; }
-
-    .note-grid { flex-direction: column; align-items: center; }
-    .open-when-card { max-width: 320px; width: 100%; }
-}

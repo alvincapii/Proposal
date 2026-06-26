@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Letter for You</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* In-line CSS to ensure seamless UI with your glassmorphism theme */
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .letter-container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            margin: 40px 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .back-link {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            color: var(--accent-rose);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .letter-label {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .letter-category {
+            font-family: var(--font-script);
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            color: var(--accent-blush);
+            margin: 10px 0;
+        }
+
+        .letter-body {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            white-space: pre-wrap; /* Preserves line breaks for a letter feel */
+        }
+
+        .letter-footer {
+            margin-top: 40px;
+            text-align: right;
+            font-family: var(--font-script);
+            font-size: 1.8rem;
+            color: var(--accent-rose);
+        }
+
+        /* Page Transition Overlay */
+        .page-transition-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .page-transition-overlay.fade-out {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        
+            /* ===============================
+            FIX: LETTER PAGE LAYOUT ISSUES
+            =============================== */
+
+            /* Fix page scrolling + prevent vertical centering issues */
+            body {
+                align-items: flex-start !important;
+                overflow-y: auto !important;
+            }
+
+            /* Make letter container behave better on long content */
+            .letter-container {
+                margin: 100px 20px 60px !important;
+            }
+
+            /* Fix back button so it's always visible and clickable */
+            .back-link {
+                position: absolute !important;
+                top: 20px !important;
+                left: 20px !important;
+
+                z-index: 10;
+            }
+
+            /* Optional: makes long letters feel nicer (scroll inside card instead of breaking page) */
+            .letter-body {
+                max-height: 65vh;
+                overflow-y: auto;
+                padding-right: 10px;
+                text-align: justify;
+            }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="particleCanvas"></canvas>
+    <div id="transitionOverlay" class="page-transition-overlay"></div>
+
+    <div class="letter-container">
+        <a href="#" class="back-link" onclick="goBack(event)">← Back to Timeline</a>
+
+        <div class="letter-header">
+            <span class="letter-label">Open When</span>
+            <h1 class="letter-category">You Feel Tired</h1>
+        </div>
+
+        <div class="letter-body">
+
+Hello lovelove, if you’re reading this, you must feel tired, and knowing you, maybe you feel guilty for feeling tired too. Maybe you’re too tired to go to school, maybe you’re too tired to show up, maybe you’re too tired to do any chores today, or maybe you’re even tired of us. I know when sinasabi mo na tired ka, hindi ka lang pagod. I know na nakakaramdam ka rin ng lungkot, ng guilt, ng pagod, at pati na rin ng maraming emotions na ikaw pa lang ang nakakaintindi. I just want you to know na you get tired because you have been trying, because you have been carrying things na ikaw lang nakakaalam at nakakaintindi ng buo. Being tired doesn’t mean you are lazy, na you are bad, being tired doesn’t mean you are failing.
+
+I hope you remember that you do not always have to be the person who understands, even when it comes to me, and I understand that. You are allowed to say “I am tired” without feeling like you have disappointed me or anyone. I know you try your best, and I see that. I see the little things you do, the effort you put into your studies, the love you give to me, and even the things you think are not enough. You do not have to constantly prove that you love me or that you care, because you already do. 
+
+Please rest today, love, okay? Wag na ikaw pumasok if you don’t feel like it, play tayo ng games, study tayo together, and watchi tayo ng pinapanood natin na series ngayon. Take care of yourself for today, love, maybe eat food if you haven’t already. If your mind starts telling you that you are too much or that you are making things harder, remember that I would rather have the real you, the tired you, the imperfect you, the overwhelmed version of you, than a version of you that is forcing herself to be okay all the time. I love you even when you are overwhelmed, tired, when you need rest, when you need reassurance, and even when you do not have the energy to give everything. I love you, even on the days when you feel like you have nothing left to give.
+
+        </div>
+
+        <div class="letter-footer">
+            With love, Alvin
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script>
+        // In-line JS to handle transitions and particles
+        function goBack(e) {
+            e.preventDefault();
+            const overlay = document.getElementById('transitionOverlay');
+            overlay.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = '../index.html';
+            }, 600);
+        }
+
+        // Initialize particles on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure particles.js is loaded and the canvas exists
+            if (window.initParticles) {
+                window.initParticles();
+            }
+        });
+    </script>
+</body>
+</html>
