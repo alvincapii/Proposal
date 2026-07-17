@@ -552,3 +552,73 @@
         font-size: 1.4rem;
     }
 }
+
+/* ============================================
+   NEW LETTERS SECTION & LATEST CARD EMPHASIS
+   ============================================ */
+
+/* Distinct bordered wrapping section */
+.new-letters-section {
+    max-width: 1140px;
+    margin: 40px auto;
+    padding: 60px 30px;
+    background: rgba(255, 255, 255, 0.02); /* Very soft variation of var(--glass-bg) */
+    border: 1px dashed rgba(232, 160, 176, 0.25); /* Elegant accent border color */
+    border-radius: 24px;
+}
+
+/* Base adjustment override for padding overlap since we wrapped it */
+.new-letters-section.secret-notes {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+/* --- Latest Card Styling --- */
+.open-when-card.latest-letter {
+    position: relative;
+    border: 1px solid var(--accent-rose) !important;
+    background: rgba(232, 160, 176, 0.05) !important;
+    box-shadow: 0 0 20px rgba(232, 160, 176, 0.15), 
+                inset 0 0 15px rgba(232, 160, 176, 0.05);
+    transform: scale(1.02);
+    /* gentlePulse is a default animation defined in main.css */
+    animation: gentlePulse 3s infinite ease-in-out; 
+}
+
+/* Maintaining the hover elevate while increasing glow strength */
+.open-when-card.latest-letter:hover {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 
+                0 0 25px rgba(232, 160, 176, 0.3);
+    border-color: rgba(232, 160, 176, 0.8) !important;
+}
+
+/* Decorative badge shifting slightly outside onto the card borders */
+.open-when-card.latest-letter .card-badge {
+    position: absolute;
+    top: -10px;        /* Moves it up to str住 the top border */
+    right: -10px;      /* Moves it out to str住 the right border */
+    background: var(--accent-rose);
+    color: #07060a; 
+    font-size: 0.65rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(232, 160, 176, 0.4);
+    z-index: 2;        /* Layer it cleanly over the card edge */
+}
+
+/* Ensuring spacing scales gracefully on high-res displays */
+@media (min-width: 1400px) {
+    .new-letters-section {
+        max-width: 1280px;
+        padding: 80px 40px;
+    }
+    .open-when-card.latest-letter .card-badge {
+        font-size: 0.75rem;
+        top: -12px;    /* Slightly more aggressive offset for larger cards */
+        right: -12px;
+    }
+}
