@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Letter for You</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* In-line CSS to ensure seamless UI with your glassmorphism theme */
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .letter-container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            margin: 40px 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .back-link {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            color: var(--accent-rose);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .letter-label {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .letter-category {
+            font-family: var(--font-script);
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            color: var(--accent-blush);
+            margin: 10px 0;
+        }
+
+        .letter-body {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            white-space: pre-wrap; /* Preserves line breaks for a letter feel */
+        }
+
+        .letter-footer {
+            margin-top: 40px;
+            text-align: right;
+            font-family: var(--font-script);
+            font-size: 1.8rem;
+            color: var(--accent-rose);
+        }
+
+        /* Page Transition Overlay */
+        .page-transition-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .page-transition-overlay.fade-out {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        
+            /* ===============================
+            FIX: LETTER PAGE LAYOUT ISSUES
+            =============================== */
+
+            /* Fix page scrolling + prevent vertical centering issues */
+            body {
+                align-items: flex-start !important;
+                overflow-y: auto !important;
+            }
+
+            /* Make letter container behave better on long content */
+            .letter-container {
+                margin: 100px 20px 60px !important;
+            }
+
+            /* Fix back button so it's always visible and clickable */
+            .back-link {
+                position: absolute !important;
+                top: 20px !important;
+                left: 20px !important;
+
+                z-index: 10;
+            }
+
+            /* Optional: makes long letters feel nicer (scroll inside card instead of breaking page) */
+            .letter-body {
+                max-height: 65vh;
+                overflow-y: auto;
+                padding-right: 10px;
+                text-align: justify;
+            }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="particleCanvas"></canvas>
+    <div id="transitionOverlay" class="page-transition-overlay"></div>
+
+    <div class="letter-container">
+        <a href="#" class="back-link" onclick="goBack(event)">← Back to Timeline</a>
+
+        <div class="letter-header">
+            <span class="letter-label">Open When</span>
+            <h1 class="letter-category">You Feel Like You're Being Left Behind</h1>
+        </div>
+
+        <div class="letter-body">
+
+Hello love, if you’re opening this letter ngayon, I’m guessing na today has been one of those days na it feels like everyone else is moving forward tapos ikaw wala pa. Maybe you’re looking around and seeing people accomplishing things; maybe you’re wondering why it feels so much harder for you. 
+
+As always, love, I wish that I could be sitting beside you while you’re reading this. Maybe paulit-ulit ko na ‘to na sinasabi sa lahat ng letters ko, but I really do feel na gustong-gusto na kita makasama, mayakap, mahawakan ang mga kamay mo, hindi lang during the good times, but also during the bad times. I’d take your hand, let you lean against me, and remind you na it’s okay to be left behind, kasi we’re all not racing to get there sa finish line. 
+
+I know it’s easy to convince yourself na you’re behind; alam ko na hindi mo gusto yung buhay mo ngayon. I know it’s really easy to tell yourself na sobrang hirap kasi parang napagiiwanan ka na. I know your mind can be loud sometimes, telling you that you’re not doing enough, that you’re not enough, or that everyone else is doing better except for you. But love, those thoughts aren’t telling you everything na you should know.
+
+Hindi mo nakikita yung lakas na kailangan para mapunta kung nasaan ka ngayon. Biruin mo, love, you’re in a whole different country and wala kang prior knowledge about the language na meron sila, and still, kinakaya mo, kahit na paunti-unti. You don’t always notice the little victories because maybe you’re too busy focusing on where you wish you were. Pero love, I can’t blame you for feeling that way; your feelings are valid too. Hindi mo naman kasi talaga ginusto kung nasaan ikaw ngayon, and I know na may moments where you felt na if things were different, you’d be doing better. I know life hasn’t always been kind to you, my pipilapu. There have been days where simply getting through the day took more energy than anyone will ever realize. And even if those days don’t feel or look impressive to anyone else, they matter to me. They always will. I can’t say this enough, love; I’m so proud of you. 
+
+Every letter from now on, me will include quotes na nakita ko sa Pinterest or any social media na maybe you could also find a bit inspiring. It says here na you’re not behind in life. There’s no schedule or timetable that we all must follow. It’s all made up. Wherever you are right now is exactly where you need to be. 7 billion people can’t do everything in exactly the same scheduled order. It says here too na your life is not on anyone else’s schedule. Kaya don’t beat yourself up for where you are right now, kasi it’s your own timeline, not anyone else’s, and nothing is off schedule. Kaya love, if you ever feel left behind, if you ever feel guilty for resting, I hope you try to remind yourself na it’s okay to breathe, it’s okay to rest. 
+
+I always see someone who’s trying, someone who’s worth loving every single day, no matter how slowly you move, no matter how many times you need to pause, no matter how uncertain the road ahead feels, I’ll always be cheering for you. Take a deep breath muna, my love. Don’t figure out everything agad-agad. I’ll be here lang with you, believing in you every step of the way, okay? I love you so much, as always.
+
+        </div>
+
+        <div class="letter-footer">
+            With love, Alvin
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script>
+        // In-line JS to handle transitions and particles
+        function goBack(e) {
+            e.preventDefault();
+            const overlay = document.getElementById('transitionOverlay');
+            overlay.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = '../index.html';
+            }, 600);
+        }
+
+        // Initialize particles on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure particles.js is loaded and the canvas exists
+            if (window.initParticles) {
+                window.initParticles();
+            }
+        });
+    </script>
+</body>
+</html>
