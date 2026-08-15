@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Letter for You</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* In-line CSS to ensure seamless UI with your glassmorphism theme */
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .letter-container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            margin: 40px 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .back-link {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            color: var(--accent-rose);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .letter-label {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .letter-category {
+            font-family: var(--font-script);
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            color: var(--accent-blush);
+            margin: 10px 0;
+        }
+
+        .letter-body {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            white-space: pre-wrap; /* Preserves line breaks for a letter feel */
+        }
+
+        .letter-footer {
+            margin-top: 40px;
+            text-align: right;
+            font-family: var(--font-script);
+            font-size: 1.8rem;
+            color: var(--accent-rose);
+        }
+
+        /* Page Transition Overlay */
+        .page-transition-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .page-transition-overlay.fade-out {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        
+            /* ===============================
+            FIX: LETTER PAGE LAYOUT ISSUES
+            =============================== */
+
+            /* Fix page scrolling + prevent vertical centering issues */
+            body {
+                align-items: flex-start !important;
+                overflow-y: auto !important;
+            }
+
+            /* Make letter container behave better on long content */
+            .letter-container {
+                margin: 100px 20px 60px !important;
+            }
+
+            /* Fix back button so it's always visible and clickable */
+            .back-link {
+                position: absolute !important;
+                top: 20px !important;
+                left: 20px !important;
+
+                z-index: 10;
+            }
+
+            /* Optional: makes long letters feel nicer (scroll inside card instead of breaking page) */
+            .letter-body {
+                max-height: 65vh;
+                overflow-y: auto;
+                padding-right: 10px;
+                text-align: justify;
+            }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="particleCanvas"></canvas>
+    <div id="transitionOverlay" class="page-transition-overlay"></div>
+
+    <div class="letter-container">
+        <a href="#" class="back-link" onclick="goBack(event)">← Back to Timeline</a>
+
+        <div class="letter-header">
+            <span class="letter-label">Open When</span>
+            <h1 class="letter-category">You Feel Unlovable</h1>
+        </div>
+
+        <div class="letter-body">
+
+Hello, lovelove ko. If you opened this, I am guessing that there is a part of you right now that is telling you that you are too much, too difficult, too emotional, too insecure, or somehow not deserving of the kind of love you want. It may be because of something I’ve done, something that happened, or just something you feel.
+
+Before anything else love, I want you to hear it from me directly. You are not unlovable. Okay? Not when you are sad, angry, insecure, not when you’re overthinking, when you need assurance, when you are tired, when you are struggling to explain what you feel, and not when you are having a bad day. 
+
+You do not suddenly become less worthy of love just because you are hurting, okay? I love you always. I know sometimes you probably look at yourself and wonder how someone could continue choosing you when you have so many things that are difficult to deal with. Maybe you think that if I saw every single part of you, I would eventually get tired and leave. But love, I have never wanted you only because you were easy to love. I did not fall in love with some perfect version of you that never gets angry, upset, never overthinks, and never scared. I fell in love with you and all of you.
+
+If something hurts you, it hurts you. If something scares you, it scares you. I may not always understand immediately, and sometimes I may make mistakes in how I respond, but that does not mean your feelings are stupid or that you are too much for having them, okay?
+
+And if I have ever made you feel like you were a burden for feeling something deeply, I am so sorry lovelove ko. You deserve to bel listened to, you deserve patience, and you deserve reassurance. 
+
+The quote I would like to share with you today is “The People who left you did not understand how to love you. This does not mean you are unlovable. It means not everyone is able to show you the love that you need.” Please keep this close to your heart, lovelove ko, most especially when your mind starts whispering that you are a burden or just too much to handle. I have to be honest with you love, because I know I am sometimes at fault as well. Even though my love for you is so deep, there are times when I fall short and fail to give you the comfort, patience, or assurance you deserve. I know it must hurt when I don’t quite know how to be there for you in the exact way you need, but please know I am always trying. 
+
+I love you sooo much, okay? More than I always know how to show. I really hope that every single time you start to forget just how lovable you are, you can return to this letter and let me remind you, lovelove ko.
+
+You are loved, okay? You are worth loving. And you will always have such a special place in my heart.
+
+        </div>
+
+        <div class="letter-footer">
+            With love, Alvin
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script>
+        // In-line JS to handle transitions and particles
+        function goBack(e) {
+            e.preventDefault();
+            const overlay = document.getElementById('transitionOverlay');
+            overlay.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = '../index.html';
+            }, 600);
+        }
+
+        // Initialize particles on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure particles.js is loaded and the canvas exists
+            if (window.initParticles) {
+                window.initParticles();
+            }
+        });
+    </script>
+</body>
+</html>
