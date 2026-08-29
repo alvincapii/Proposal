@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Letter for You</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* In-line CSS to ensure seamless UI with your glassmorphism theme */
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .letter-container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            margin: 40px 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .back-link {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            color: var(--accent-rose);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .letter-label {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .letter-category {
+            font-family: var(--font-script);
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            color: var(--accent-blush);
+            margin: 10px 0;
+        }
+
+        .letter-body {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            white-space: pre-wrap; /* Preserves line breaks for a letter feel */
+        }
+
+        .letter-footer {
+            margin-top: 40px;
+            text-align: right;
+            font-family: var(--font-script);
+            font-size: 1.8rem;
+            color: var(--accent-rose);
+        }
+
+        /* Page Transition Overlay */
+        .page-transition-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .page-transition-overlay.fade-out {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        
+            /* ===============================
+            FIX: LETTER PAGE LAYOUT ISSUES
+            =============================== */
+
+            /* Fix page scrolling + prevent vertical centering issues */
+            body {
+                align-items: flex-start !important;
+                overflow-y: auto !important;
+            }
+
+            /* Make letter container behave better on long content */
+            .letter-container {
+                margin: 100px 20px 60px !important;
+            }
+
+            /* Fix back button so it's always visible and clickable */
+            .back-link {
+                position: absolute !important;
+                top: 20px !important;
+                left: 20px !important;
+
+                z-index: 10;
+            }
+
+            /* Optional: makes long letters feel nicer (scroll inside card instead of breaking page) */
+            .letter-body {
+                max-height: 65vh;
+                overflow-y: auto;
+                padding-right: 10px;
+                text-align: justify;
+            }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="particleCanvas"></canvas>
+    <div id="transitionOverlay" class="page-transition-overlay"></div>
+
+    <div class="letter-container">
+        <a href="#" class="back-link" onclick="goBack(event)">← Back to Timeline</a>
+
+        <div class="letter-header">
+            <span class="letter-label">Open When</span>
+            <h1 class="letter-category">You Feel I'm Tired of You</h1>
+        </div>
+
+        <div class="letter-body">
+
+Hi love, If you are reading this, maybe you are thinking that I am getting tired of you, tired of our problems, or maybe even tired of loving you. I do not know exactly what is going through your head right now, but I want you to hear this from me clearly. I am not tired of you, okay?
+
+I might get tired sometimes, but that does not mean I am tired of you. There is a difference between being exhausted from a difficult situation and being tired of the person you love. Sometimes things between us can be difficult, and sometimes I might not know what to say or do, but none of that suddenly makes you someone I do not want in my life.
+
+I know I have made mistakes. I know there have been times when my actions made you feel like I did not care enough, like I was not listening, or like I was getting tired of trying. I am really sorry for those moments. You should not have to constantly wonder whether I still love you whenever we have a problem, okay?
+
+I do not expect you to be perfect either. You have your bad days, your overthinking, your fears, your feelings, and all the things that make you you. I do not only love you when you are happy or when everything between us is easy. I love you as a whole person.
+
+And love, you do not have to become easier to love, okiii? You do not have to hide when you are sad. You do not have to pretend that something does not hurt you just because you are scared that I might get tired. You do not have to keep everything to yourself just so you will not become a burden to me. I want to be someone you can be honest with, lovelove ko. The quote I want to share with you today lovelove ko is that “You deserve to be loved the same way you love.” You deserve someone who listens when something hurts you, who cares about your feelings, and someone who does not make you feel like you have to earn their love by being perfect. I want to be that person for you, okay? 
+
+I love you, Cana. More than you probably realize, okay lovelove ko? And even on the days when things are difficult, you are still someone I care about deeply. I love you so much okayyy? It's always us against the world. Mwamwamwa 
+        <div class="letter-footer">
+            With love, Alvin
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script>
+        // In-line JS to handle transitions and particles
+        function goBack(e) {
+            e.preventDefault();
+            const overlay = document.getElementById('transitionOverlay');
+            overlay.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = '../index.html';
+            }, 600);
+        }
+
+        // Initialize particles on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure particles.js is loaded and the canvas exists
+            if (window.initParticles) {
+                window.initParticles();
+            }
+        });
+    </script>
+</body>
+</html>
