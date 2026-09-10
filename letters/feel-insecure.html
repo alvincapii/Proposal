@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Letter for You</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* In-line CSS to ensure seamless UI with your glassmorphism theme */
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .letter-container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            margin: 40px 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .back-link {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            color: var(--accent-rose);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .letter-label {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .letter-category {
+            font-family: var(--font-script);
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            color: var(--accent-blush);
+            margin: 10px 0;
+        }
+
+        .letter-body {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            white-space: pre-wrap; /* Preserves line breaks for a letter feel */
+        }
+
+        .letter-footer {
+            margin-top: 40px;
+            text-align: right;
+            font-family: var(--font-script);
+            font-size: 1.8rem;
+            color: var(--accent-rose);
+        }
+
+        /* Page Transition Overlay */
+        .page-transition-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .page-transition-overlay.fade-out {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        
+            /* ===============================
+            FIX: LETTER PAGE LAYOUT ISSUES
+            =============================== */
+
+            /* Fix page scrolling + prevent vertical centering issues */
+            body {
+                align-items: flex-start !important;
+                overflow-y: auto !important;
+            }
+
+            /* Make letter container behave better on long content */
+            .letter-container {
+                margin: 100px 20px 60px !important;
+            }
+
+            /* Fix back button so it's always visible and clickable */
+            .back-link {
+                position: absolute !important;
+                top: 20px !important;
+                left: 20px !important;
+
+                z-index: 10;
+            }
+
+            /* Optional: makes long letters feel nicer (scroll inside card instead of breaking page) */
+            .letter-body {
+                max-height: 65vh;
+                overflow-y: auto;
+                padding-right: 10px;
+                text-align: justify;
+            }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="particleCanvas"></canvas>
+    <div id="transitionOverlay" class="page-transition-overlay"></div>
+
+    <div class="letter-container">
+        <a href="#" class="back-link" onclick="goBack(event)">← Back to Timeline</a>
+
+        <div class="letter-header">
+            <span class="letter-label">Open When</span>
+            <h1 class="letter-category">You Feel Insecure</h1>
+        </div>
+
+        <div class="letter-body">
+
+Hellooo my baby, If you're reading this, maybe you're having one of those moments where you're comparing yourself to other people and wondering if one day I'll meet someone who is prettier, smarter, funnier, easier to love, or somehow “better” than you. 
+
+Unang una love me tell you this, I’m not looking for someone better than you okay? You’re not someone I’m comparing against everyone else.
+
+You’re the person I chose, you’re the person I choose, and you’re the person I will keep on choosing. You’re all I want, love. When I look at you, I don’t think about what you could be doing differently or what you need to change for me to love you more. I love you because you’re you, I love you whether may “h” ba yung name mo or wala.  I love you kahit na minsan you think you’re not pretty. I love you kahit na you think your cheeks are too big. I love you kahit na you think na your arms are too wide. I love you kahit na you think you are easily replaceable. I love you kahit na minsan you think na you’re too much. I love you with all of your imperfections, love. I love you kahit na sa mga mata mo, hindi ka perfect. 
+
+I don’t want you to feel like you have to prove that you’re worth staying for okay? You don’t have to be perfect, you don’t have to be afraid that I’ll suddenly leave you for someone else. I want you, I want our life, our future life together, I want more memories with you, more calls, more games, more letters, more gifts, more stupid moments with each other, and more days where we’re together and don’t even realize how much we’ll miss that moment someday.
+
+Kahit na we’re going through difficult days, my love for you will never disappear, okay? So please lovelove, whenever that fear comes back, come back to this letter tooo. Okay? Pinky promise mo sa akin love. After you read this letter, send me a picture ng pinky moo okayyy? Tell me na you pinky promise you’ll open this letter I made you whenever you feel that feeling.
+
+The quote na I wanted to share with you this week is this: “In a sea of people, my eyes will always search for you” I know that lately, there have been moments na you haven’t felt completely confident in yourself. Maybe you’ve looked at yourself and felt like you weren’t enough, or you’ve found yourself questioning the things you normally wouldn’t think about.
+
+I wish you could see yourself through my eyes during those moments love. I just see you and I absolutely love what I see. You don't have to become prettier, different, or more confident just to deserve the way I love you. 
+
+When I say that my eyes would search for you in a sea of people, I mean that you are the person I want to find. And I hope that one day, when you look at yourself, you can see even a little bit of what I see in you. You deserve to look at yourself with the same love that I look at you with. 
+
+I love you love, and I hope you never forget that.
+
+        <div class="letter-footer">
+            With love, Alvin
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script>
+        // In-line JS to handle transitions and particles
+        function goBack(e) {
+            e.preventDefault();
+            const overlay = document.getElementById('transitionOverlay');
+            overlay.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = '../index.html';
+            }, 600);
+        }
+
+        // Initialize particles on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure particles.js is loaded and the canvas exists
+            if (window.initParticles) {
+                window.initParticles();
+            }
+        });
+    </script>
+</body>
+</html>
