@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Letter for You</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* In-line CSS to ensure seamless UI with your glassmorphism theme */
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .letter-container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            margin: 40px 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .back-link {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            color: var(--accent-rose);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .letter-label {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .letter-category {
+            font-family: var(--font-script);
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            color: var(--accent-blush);
+            margin: 10px 0;
+        }
+
+        .letter-body {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            white-space: pre-wrap; /* Preserves line breaks for a letter feel */
+        }
+
+        .letter-footer {
+            margin-top: 40px;
+            text-align: right;
+            font-family: var(--font-script);
+            font-size: 1.8rem;
+            color: var(--accent-rose);
+        }
+
+        /* Page Transition Overlay */
+        .page-transition-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .page-transition-overlay.fade-out {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        
+            /* ===============================
+            FIX: LETTER PAGE LAYOUT ISSUES
+            =============================== */
+
+            /* Fix page scrolling + prevent vertical centering issues */
+            body {
+                align-items: flex-start !important;
+                overflow-y: auto !important;
+            }
+
+            /* Make letter container behave better on long content */
+            .letter-container {
+                margin: 100px 20px 60px !important;
+            }
+
+            /* Fix back button so it's always visible and clickable */
+            .back-link {
+                position: absolute !important;
+                top: 20px !important;
+                left: 20px !important;
+
+                z-index: 10;
+            }
+
+            /* Optional: makes long letters feel nicer (scroll inside card instead of breaking page) */
+            .letter-body {
+                max-height: 65vh;
+                overflow-y: auto;
+                padding-right: 10px;
+                text-align: justify;
+            }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="particleCanvas"></canvas>
+    <div id="transitionOverlay" class="page-transition-overlay"></div>
+
+    <div class="letter-container">
+        <a href="#" class="back-link" onclick="goBack(event)">← Back to Timeline</a>
+
+        <div class="letter-header">
+            <span class="letter-label">Open When</span>
+            <h1 class="letter-category">You're Excited to Spend Time with Me</h1>
+        </div>
+
+        <div class="letter-body">
+
+Hello lovelove ko, you must be waiting for me to get home or waiting for me to get my things done tapos we’ll get to spend time together na. I just want you to know too na I’m really really excited na to spend time with you too, spending my time with you is the best part of my day. Tulad ng lagi kong sinasabi sayo, ikaw at ikaw lang ang gusto kong kausap, kalaro, at ka-bonding tuwing pagod ako kasi ikaw ang pahinga ko. Knowing that I get to spend the rest of my day with you, even if it’s through a screen, is enough to make me feel happy :> 
+
+You’re my favorite part of every day, love. You’re not just my girlfriend, lovelove ko; you are my peace, and you’re the one I’ll always turn to. I am grateful to have you in my life, love. You are the best thing that has ever happened to me. I can’t wait for the day na uuwi ako ng bahay tapos ikaw yung sasalubong sakin with a warm hug. I can’t wait for the day na alagaan kita tuwing may sakit ka. I can’t wait for the day na masasamahan kita lagi mag-grocery sa labas. I can’t wait for the day na ihatid-sundo kita tuwing may pasok ka sa work. I can’t wait for the day na pwede na kita ilibre sa mga restaurants. I can’t wait na mag-aaway tayo kasi nag-uunahan tayo sa pagbabayad sa cashier kasi ayaw mo na nililibre kita. I can’t wait for the day na uuwi akong may mga pasalubong for you and our kids. I can’t wait na hindi na lang kita makikita sa screen kundi sa totoong buhay na tayo mag-spend ng time together. 
+
+I miss you so much na love :< Seeing your name appear on my phone every time is my favorite part of my day. It may seem like a small thing, but it never feels small to me. Noong friends pa lang tayo, I’d get excited every time I saw your name na mag-chat sa akin or mag-react sa mga sinesend ko na tiktoks noon. Kasi sa kabila ng sobrang nakakapagod kong mundo sa work at sa school na punong-puno ng deadlines, ikaw ang nagiging pahinga ko. Ikaw lang ang nakakapagpakalma sa akin. Ikaw lang ang nararamdaman kong pahinga ko. 
+
+Yung quote na I want to share sayo today is this: “Home isn’t a place anymore. It’s a person, and I found mine in you.” I relate so much to this kasi ikaw yung nagsisilbing pahinga ko sa kabila ng lahat. Ikaw ang naging tahanan ko kasi sayo lang ako pwede maging totoo, sayo lang ako pwedeng magpahinga at huminto muna, sayo ko lang nahanap yung peace na matagal ko nang hinahanap. Kahit na we onli talk sa screen ng laptop or phones natin, ikaw pa rin ang pahinga ko. Sayo at sayo lang ako uuwi palagi love. Tuwing kausap kita, parang nakauwi na rin ako sayo :< Gustong gusto na kitang makasama lovelove ko. Uwi na tayo? :< 
+
+
+        </div>
+
+        <div class="letter-footer">
+            With love, Alvin
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script>
+        // In-line JS to handle transitions and particles
+        function goBack(e) {
+            e.preventDefault();
+            const overlay = document.getElementById('transitionOverlay');
+            overlay.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = '../index.html';
+            }, 600);
+        }
+
+        // Initialize particles on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure particles.js is loaded and the canvas exists
+            if (window.initParticles) {
+                window.initParticles();
+            }
+        });
+    </script>
+</body>
+</html>
