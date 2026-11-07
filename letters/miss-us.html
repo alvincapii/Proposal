@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Letter for You</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* In-line CSS to ensure seamless UI with your glassmorphism theme */
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .letter-container {
+            position: relative;
+            z-index: 1;
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            margin: 40px 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .back-link {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            color: var(--accent-rose);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .letter-label {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        .letter-category {
+            font-family: var(--font-script);
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            color: var(--accent-blush);
+            margin: 10px 0;
+        }
+
+        .letter-body {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            white-space: pre-wrap; /* Preserves line breaks for a letter feel */
+        }
+
+        .letter-footer {
+            margin-top: 40px;
+            text-align: right;
+            font-family: var(--font-script);
+            font-size: 1.8rem;
+            color: var(--accent-rose);
+        }
+
+        /* Page Transition Overlay */
+        .page-transition-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-dark);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .page-transition-overlay.fade-out {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        
+            /* ===============================
+            FIX: LETTER PAGE LAYOUT ISSUES
+            =============================== */
+
+            /* Fix page scrolling + prevent vertical centering issues */
+            body {
+                align-items: flex-start !important;
+                overflow-y: auto !important;
+            }
+
+            /* Make letter container behave better on long content */
+            .letter-container {
+                margin: 100px 20px 60px !important;
+            }
+
+            /* Fix back button so it's always visible and clickable */
+            .back-link {
+                position: absolute !important;
+                top: 20px !important;
+                left: 20px !important;
+
+                z-index: 10;
+            }
+
+            /* Optional: makes long letters feel nicer (scroll inside card instead of breaking page) */
+            .letter-body {
+                max-height: 65vh;
+                overflow-y: auto;
+                padding-right: 10px;
+                text-align: justify;
+            }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="particleCanvas"></canvas>
+    <div id="transitionOverlay" class="page-transition-overlay"></div>
+
+    <div class="letter-container">
+        <a href="#" class="back-link" onclick="goBack(event)">← Back to Timeline</a>
+
+        <div class="letter-header">
+            <span class="letter-label">Open When</span>
+            <h1 class="letter-category">You Miss Us</h1>
+        </div>
+
+        <div class="letter-body">
+Helloo lovelove. If you're reading this, maybe you're missing us, maybe things have been a little difficult lately, or maybe you just want to remember what we have and how everything started. Whatever the reason is, I hope this letter reminds you of something.
+
+I hope you remember that somewhere along the way, two people found each other and decided to make a place for one another in their lives. Out of all the people we could've met, all the conversations we could've had, and all the different paths we could've taken, somehow, it was us. And I don't think I'll ever stop being grateful for that.
+
+I want you to remember our little moments. The calls, the games, the silly conversations, the times we would stay together even when we didn't really have anything to talk about. The times we laughed over the smallest things, the times we shared stories, and even the quiet moments where simply having you around was already enough for me.
+
+I hope you remember all the times we made each other smile, all the little things we learned about one another, and all the ways we slowly became part of each other's everyday lives. You became someone I wanted to tell things to, someone I wanted to share my day with, someone I would look forward to spending time with. Even the most ordinary days became a little more special because I got to spend them with you.
+
+And I know we haven't always been perfect. We've had misunderstandings, difficult conversations, moments where we didn't understand each other, and times when loving each other felt a little harder than usual. I know there have been moments when either of us felt hurt, unheard, or misunderstood. I'm not going to pretend those moments didn't happen, because they're part of our story too.
+
+But I hope you remember that those difficult moments aren't the entirety of us. They don't erase every laugh, every sweet message, every little gesture, every time we chose to spend time together, or every moment we made each other feel loved.
+
+I don't want us to be defined only by the times we hurt each other. I want us to remember the people we are outside of our disagreements, too. The two people who can be silly together, who can make each other laugh, who share little pieces of their days, and who found something worth cherishing in one another.
+
+Love, I hope you never think that everything we've shared means any less just because we're going through something difficult. I hope you never forget how much you've meant to me, how much happiness you've brought into my life, and how many memories I'll always be thankful for.
+
+If I could go back and experience those little moments with you all over again, I would. Even the ordinary ones. Especially the ordinary ones. Because they were ours.
+
+And if there's one thing I want you to take away from this letter, it's that I am grateful that our story happened. I'm grateful that I got to know you, that I got to love you, and that I got to experience a kind of happiness that I can associate with you.
+
+I don't know exactly what every chapter ahead of us will look like, but I know that what we've shared is something I'll never want to take for granted. I want to keep learning you, understanding you, making memories with you, and finding new reasons to fall in love with you in the little things.
+
+So whenever you need to remember us, remember more than just the difficult days. Remember the laughter. Remember the lambing. Remember our little world, our inside jokes, our calls, and all the tiny moments that probably seemed insignificant at the time but became some of my favorite memories.
+
+And most importantly, remember that you are someone I am genuinely thankful to have met.
+
+The quote I want to show you today is this: “The best thing to hold onto in life is each other”. I want to show you this quote because of how much it reminds me of us, especially after everything that’s happened this week. We got so close to the possibility of losing what we have; it felt way too real and ayaw ko na po maulit yun :< I don't mean that we should hold onto each other by ignoring the things that hurt us, or that loving each other means we won't have difficult days. I think it's about remembering that there's a person behind every disagreement, someone you once laughed with, shared countless little moments with, and built something meaningful alongside. We're more than our misunderstandings. We're more than the times we couldn't find the right words or the moments when things didn't go the way we wanted them to. There's so much more to our story than that.
+
+I love you, Cana. I love you for all the little things that make you you, and I'm so happy that I got to call you my love.
+
+Here's to all the memories we've made, all the ones we'll look back on someday, and all the little moments we have yet to experience.
+
+Our story will always be something special to me, love :< I love you, my baby Alli. Always. 
+
+
+
+
+        </div>
+
+        <div class="letter-footer">
+            With love, Alvin
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script>
+        // In-line JS to handle transitions and particles
+        function goBack(e) {
+            e.preventDefault();
+            const overlay = document.getElementById('transitionOverlay');
+            overlay.classList.add('fade-out');
+            setTimeout(() => {
+                window.location.href = '../index.html';
+            }, 600);
+        }
+
+        // Initialize particles on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure particles.js is loaded and the canvas exists
+            if (window.initParticles) {
+                window.initParticles();
+            }
+        });
+    </script>
+</body>
+</html>
